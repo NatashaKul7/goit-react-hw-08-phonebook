@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { filterContact } from 'redux/contacts/contactsSlice';
 
-import { Form } from 'components/Form/Form';
 import { Contacts } from 'components/Contacts/Contacts';
 import { Filter } from 'components/Filter/Filter';
 import { useEffect } from 'react';
 import { requestContacts } from 'redux/contacts/operations';
 import { Container } from 'components/App/App.styled';
+import { Form } from 'components/ContactForm/Form';
 
 // export function App() {
 function ContactsPage() {

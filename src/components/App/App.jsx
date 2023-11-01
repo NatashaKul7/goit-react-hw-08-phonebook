@@ -48,15 +48,17 @@
 ///////////////////////
 
 // import { lazy } from 'react';
-// import SharedLayout from 'components/SharedLayout/SharedLayout';
-import { NavLink, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import ContactsPage from 'pages/ContactsPage';
 import RegisterPage from 'pages/RegisterPage';
 import LoginPage from 'pages/LoginPage';
 import Home from 'pages/HomePage';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 
-// const Home = lazy(() => import('../../pages/HomePage'));
+// const Home = lazy(() => import('pages/HomePage'));
+// const RegisterPage = lazy(() => import('pages/RegisterPage'));
+// const LoginPage = lazy(() => import('pages/LoginPage'));
+// const ContactsPage = lazy(() => import('pages/ContactsPage'));
 
 const App = () => {
   return (

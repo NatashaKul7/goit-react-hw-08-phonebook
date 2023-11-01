@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const FormBox = styled.form`
   display: flex;
   flex-direction: column;
+  width: 600px;
 
   button {
     margin-top: 16px;
@@ -18,6 +19,7 @@ export const FormBox = styled.form`
       rgba(0, 0, 0, 0.19) 0px 10px 20px;
   }
   input {
+    width: 580px;
     padding: 4px 8px;
     border-radius: 20px;
     outline-color: #00ffff;

@@ -1,11 +1,12 @@
-import Register from 'components/Register/Register';
+import { Container } from 'components/App/App.styled';
+import Register from 'components/RegisterForm/Register';
 import React from 'react';
 
 const RegisterPage = () => {
   return (
-    <div>
+    <Container>
       <Register />
-    </div>
+    </Container>
   );
 };
 
