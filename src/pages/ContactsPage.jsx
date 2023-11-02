@@ -8,7 +8,6 @@ import { requestContacts } from 'redux/contacts/operations';
 import { Container } from 'components/App/App.styled';
 import { Form } from 'components/ContactForm/Form';
 
-// export function App() {
 function ContactsPage() {
   const dispatch = useDispatch();
 

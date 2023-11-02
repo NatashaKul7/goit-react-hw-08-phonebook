@@ -1,19 +1,14 @@
-import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import Navigation from 'components/Navigation/Navigation';
+import React, { Suspense } from 'react';
 
-const SharedLayout = () => {
+const SharedLayout = ({ children }) => {
   return (
-    <>
-      <nav>
-        <NavLink to="/" end>
-          Home
-        </NavLink>
-        <NavLink to="/register">Registration</NavLink>
-        <NavLink to="/login">Log in</NavLink>
-        <NavLink to="/contacts">Contacts</NavLink>
-      </nav>
-      <Outlet />
-    </>
+    <div>
+      <Navigation />
+      <main>
+        <Suspense fallback={<p>Loading...</p>}>{children}</Suspense>
+      </main>
+    </div>
   );
 };
 

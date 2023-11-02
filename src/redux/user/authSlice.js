@@ -1,5 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { loginThunk, registerThunk } from './operations';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import {
+  loginThunk,
+  logoutThunk,
+  refreshThunk,
+  registerThunk,
+} from './operations';
 
 const INITIAL_STATE = {
   token: null,
@@ -12,36 +17,17 @@ const INITIAL_STATE = {
   isAuthenticated: false,
 };
 
-// function isRejectedAction(action) {
-//   return action.type.endsWith('rejected');
-// }
-// function isPendingAction(action) {
-//   return action.type.endsWith('pending');
-// }
-
 const authSlice = createSlice({
   name: 'contacts',
   initialState: INITIAL_STATE,
   extraReducers: builder =>
     builder
-      .addCase(registerThunk.pending, state => {
-        state.isLoading = true;
-        state.error = null;
-      })
+
       .addCase(registerThunk.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isAuthenticated = true;
         state.token = action.payload.token;
         state.user = action.payload.user;
-      })
-      .addCase(registerThunk.rejected, (state, action) => {
-        state.isLoading = true;
-        state.error = action.payload;
-      })
-
-      .addCase(loginThunk.pending, state => {
-        state.isLoading = true;
-        state.error = null;
       })
 
       .addCase(loginThunk.fulfilled, (state, action) => {
@@ -51,10 +37,46 @@ const authSlice = createSlice({
         state.user = action.payload.user;
       })
 
-      .addCase(loginThunk.rejected, (state, action) => {
-        state.isLoading = true;
-        state.error = action.payload;
-      }),
+      .addCase(refreshThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isAuthenticated = true;
+        state.user = action.payload;
+      })
+
+      .addCase(logoutThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isAuthenticated = false;
+        state.token = null;
+        state.user = {
+          name: null,
+          email: null,
+        };
+      })
+
+      .addMatcher(
+        isAnyOf(
+          registerThunk.pending,
+          loginThunk.pending,
+          refreshThunk.pending,
+          logoutThunk.pending
+        ),
+        state => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          registerThunk.rejected,
+          loginThunk.rejected,
+          refreshThunk.rejected,
+          logoutThunk.rejected
+        ),
+        (state, action) => {
+          state.isLoading = true;
+          state.error = action.payload;
+        }
+      ),
 });
 
 export const authReducer = authSlice.reducer;

@@ -12,8 +12,7 @@ export const FormBox = styled.form`
     background-color: #00ffff;
     font-size: inherit;
   }
-  button:hover,
-  button:focus {
+  button:hover {
     scale: 1.1;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
       rgba(0, 0, 0, 0.19) 0px 10px 20px;

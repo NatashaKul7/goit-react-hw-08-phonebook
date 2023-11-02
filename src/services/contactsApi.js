@@ -1,9 +1,4 @@
-import axios from 'axios';
-
-const phonebookInstance = axios.create({
-  baseURL: 'https://connections-api.herokuapp.com/',
-  headers: 'Bearer token',
-});
+import { phonebookInstance } from './userApi';
 
 export const fetchContacts = async () => {
   const { data } = await phonebookInstance.get('/contacts');
