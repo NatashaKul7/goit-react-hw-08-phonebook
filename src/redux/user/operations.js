@@ -25,7 +25,7 @@ export const loginThunk = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const response = await requestLogin(formData);
-      console.log(response);
+      // console.log(response);
 
       return response;
     } catch (error) {
@@ -41,10 +41,7 @@ export const refreshThunk = createAsyncThunk(
       const state = thunkAPI.getState();
       const token = state.auth.token;
       setToken(token);
-
       const response = await requestCurrentUser();
-
-      console.log(response);
 
       return response;
     } catch (error) {
@@ -66,7 +63,6 @@ export const logoutThunk = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await requestLogout();
-      console.log(response);
 
       return response;
     } catch (error) {

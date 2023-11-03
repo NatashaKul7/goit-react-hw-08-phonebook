@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { addContacts, deleteContacts, requestContacts } from './operations';
 
 const INITIAL_STATE = {
@@ -9,13 +9,6 @@ const INITIAL_STATE = {
   },
   filter: '',
 };
-
-function isRejectedAction(action) {
-  return action.type.endsWith('rejected');
-}
-function isPendingAction(action) {
-  return action.type.endsWith('pending');
-}
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -49,14 +42,28 @@ const contactsSlice = createSlice({
         state.contacts.error = null;
       })
 
-      .addMatcher(isPendingAction, state => {
-        state.contacts.isLoading = true;
-        state.contacts.error = null;
-      })
-      .addMatcher(isRejectedAction, (state, action) => {
-        state.contacts.isLoading = false;
-        state.contacts.error = action.payload;
-      }),
+      .addMatcher(
+        isAnyOf(
+          requestContacts.pending,
+          addContacts.pending,
+          deleteContacts.pending
+        ),
+        state => {
+          state.contacts.isLoading = true;
+          state.contacts.error = null;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          requestContacts.rejected,
+          addContacts.rejected,
+          deleteContacts.rejected
+        ),
+        (state, action) => {
+          state.contacts.isLoading = false;
+          state.contacts.error = action.payload;
+        }
+      ),
 });
 
 export const contactsReducer = contactsSlice.reducer;
