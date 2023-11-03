@@ -27,3 +27,8 @@ a {
   cursor: pointer;
 }
 
+p,
+span,
+input {
+  font-size: 20px;
+}

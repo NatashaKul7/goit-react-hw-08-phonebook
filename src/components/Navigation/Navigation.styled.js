@@ -6,8 +6,10 @@ export const StyledHeader = styled.header`
   gap: 8px;
   align-items: center;
 
-  padding: 8px;
-  font-size: 20px;
+  padding: 0px 8px;
+  margin-bottom: 14px;
+
+  /* font-size: 20px; */
   background-color: rgba(255, 255, 255, 0.7);
 `;
 
