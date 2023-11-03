@@ -1,19 +1,16 @@
 import styled from 'styled-components';
 
-export const ContactsBox = styled.ul`
+export const StyledUserMenu = styled.div`
   display: flex;
-  flex-direction: column;
-  padding-left: 0;
-
-  gap: 16px;
-
-  li {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  align-items: center;
+  margin-left: auto;
+  
+  p {
+     margin: 0px 10px 0px 0px;
   }
+
   button {
-    margin-left: auto;
+    margin: 0;
     padding: 4px 8px;
 
     border-radius: 20px;
@@ -23,11 +20,8 @@ export const ContactsBox = styled.ul`
     background-color: rgba(0, 0, 255, 0.7);
   }
   button:hover {
-    scale: 1.1;
+    transform: scale(1.1);
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
       rgba(0, 0, 0, 0.19) 0px 10px 20px;
-  }
-  .contactName {
-    margin-right: 8px;
   }
 `;

@@ -1,31 +1,37 @@
 import UserMenu from 'components/UserMenu/UserMenu';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { selectIsAuthenticated } from 'redux/user/selectors';
+import { StyledHeader, StyledLink } from './Navigation.styled';
 
 const Navigation = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
 
   return (
-    <div>
-      <header>
-        <NavLink to="/" end>
-          Home
-        </NavLink>
+  
+      <StyledHeader>
+        <StyledLink to="/" end>
+          <p>Home</p>
+        </StyledLink>
         {isAuthenticated ? (
           <>
-            <NavLink to="/contacts">Contacts</NavLink>
+            <StyledLink to="/contacts">
+              <p>Contacts</p>
+            </StyledLink>
             <UserMenu />
           </>
         ) : (
           <>
-            <NavLink to="/register">Registration</NavLink>
-            <NavLink to="/login">Log in</NavLink>
+            <StyledLink to="/register">
+              <p>Registration</p>
+            </StyledLink>
+            <StyledLink to="/login">
+              <p>Log in</p>
+            </StyledLink>
           </>
         )}
-      </header>
-    </div>
+      </StyledHeader>
+
   );
 };
 

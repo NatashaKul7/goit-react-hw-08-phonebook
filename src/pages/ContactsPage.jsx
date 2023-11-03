@@ -35,12 +35,13 @@ function ContactsPage() {
       <Form />
       <h2>Contacts</h2>
       {isLoading && !error && <h3>Loading...</h3>}
-      {contacts.length !== 0 && (
+      {contacts.length !== 0 ? (
         <>
           <Filter onChange={handleFilterChange} filter={filter} />
           <Contacts contacts={filterContacts()} />
         </>
-      )}
+      )
+    : (<p>There is no any contacts here yet</p>)}
     </Container>
   );
 }

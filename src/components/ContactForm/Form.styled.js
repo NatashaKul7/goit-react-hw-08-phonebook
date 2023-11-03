@@ -9,7 +9,8 @@ export const FormBox = styled.form`
     margin-top: 16px;
     padding: 4px;
     border-radius: 20px;
-    background-color: #00ffff;
+    color: #ffffff;
+    background-color: rgba(0, 0, 255, 0.7);
     font-size: inherit;
   }
   button:hover {
@@ -21,6 +22,6 @@ export const FormBox = styled.form`
     width: 580px;
     padding: 4px 8px;
     border-radius: 20px;
-    outline-color: #00ffff;
+    outline-color: #0000ff;
   }
 `;

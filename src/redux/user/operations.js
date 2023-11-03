@@ -25,7 +25,6 @@ export const loginThunk = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const response = await requestLogin(formData);
-      // console.log(response);
 
       return response;
     } catch (error) {

@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutThunk } from 'redux/user/operations';
 import { selectUser } from 'redux/user/selectors';
+import { StyledUserMenu } from './UserMenu.styled';
 
 const UserMenu = () => {
   const user = useSelector(selectUser);
@@ -10,10 +11,10 @@ const UserMenu = () => {
   const onLogOut = () => dispatch(logoutThunk());
 
   return (
-    <>
-      <span>Hello {user.name}</span>
+   <StyledUserMenu>
+      <p>Hello {user.name}</p>
       <button onClick={onLogOut}>Log Out</button>
-    </>
+    </StyledUserMenu>
   );
 };
 
