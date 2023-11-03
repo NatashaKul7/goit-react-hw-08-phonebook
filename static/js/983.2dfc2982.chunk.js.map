@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/983.2dfc2982.chunk.js","mappings":"oKAMA,UAJa,WACX,OAAOA,EAAAA,EAAAA,KAAA,MAAAC,SAAI,8BACb,C","sources":["pages/HomePage.jsx"],"sourcesContent":["import React from 'react';\n\nconst Home = () => {\n  return <h1>Welcome to your phone book</h1>;\n};\n\nexport default Home;\n"],"names":["_jsx","children"],"sourceRoot":""}
