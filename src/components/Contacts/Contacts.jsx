@@ -1,12 +1,33 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ContactsBox } from './Contacts.styled';
-import { deleteContacts } from 'redux/contacts/operations';
+import { deleteContacts, updateContacts } from 'redux/contacts/operations';
+import { setEditingContactId } from 'redux/contacts/contactsSlice';
 
 export const Contacts = ({ contacts }) => {
+  const editingContactId = useSelector(
+    state => state.contacts.editingContactId
+  );
   const dispatch = useDispatch();
 
   const handleDelete = id => {
     dispatch(deleteContacts(id));
+  };
+
+  const handleEdit = id => {
+    dispatch(setEditingContactId(id));
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const name = e.currentTarget.elements.name.value;
+    const number = e.currentTarget.elements.number.value;
+    const updatedContact = {
+      name,
+      number,
+    };
+    dispatch(updateContacts(updatedContact))
+      .unwrap()
+      .then(() => dispatch(setEditingContactId(null)));
   };
 
   return (
@@ -14,8 +35,30 @@ export const Contacts = ({ contacts }) => {
       {contacts?.map(({ id, name, number }) => {
         return (
           <li key={id}>
+            {editingContactId === id && (
+              <form onSubmit={handleSubmit}>
+                <label>
+                  <span>Name</span>
+                  <input type="text" defaultValue={name} name="name" />
+                </label>
+                <label>
+                  <span>Phone</span>
+                  <input type="number" defaultValue={number} name="number" />
+                </label>
+                <button type="submit">Save contact</button>
+                <button
+                  type="button"
+                  onClick={() => dispatch(setEditingContactId(null))}
+                >
+                  &times;
+                </button>
+              </form>
+            )}
             <span className="contactName">{name}:</span>
             <span>{number}</span>
+            <button type="button" onClick={() => handleEdit(id)}>
+              Edit
+            </button>
             <button type="button" onClick={() => handleDelete(id)}>
               Delete
             </button>

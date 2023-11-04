@@ -14,3 +14,8 @@ export const fetchDeleteContacts = async id => {
   const { data } = await phonebookInstance.delete(`/contacts/${id}`);
   return data;
 };
+
+export const fetchUpdateContacts = async (id, newContact) => {
+  const { data } = await phonebookInstance.patch(`/contacts/${id}`, newContact);
+  return data;
+};

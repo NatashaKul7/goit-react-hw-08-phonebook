@@ -1,5 +1,10 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { addContacts, deleteContacts, requestContacts } from './operations';
+import {
+  addContacts,
+  deleteContacts,
+  requestContacts,
+  updateContacts,
+} from './operations';
 
 const INITIAL_STATE = {
   contacts: {
@@ -8,6 +13,7 @@ const INITIAL_STATE = {
     error: null,
   },
   filter: '',
+  editingContactId: null,
 };
 
 const contactsSlice = createSlice({
@@ -16,6 +22,9 @@ const contactsSlice = createSlice({
   reducers: {
     filterContact(state, action) {
       state.filter = action.payload;
+    },
+    setEditingContactId(state, action) {
+      state.editingContactId = action.payload;
     },
   },
   extraReducers: builder =>
@@ -42,11 +51,27 @@ const contactsSlice = createSlice({
         state.contacts.error = null;
       })
 
+      .addCase(updateContacts.fulfilled, (state, action) => {
+        state.contacts.isLoading = false;
+        state.contacts.item = state.contacts.item.map(contact => {
+          if (contact.id === action.payload.id) {
+            return action.payload;
+          }
+          return contact;
+        });
+
+        // const updatedContactIndex = state.contacts.item.findIndex(contact => contact.id === action.payload.id)
+        // if (updatedContactIndex !== -1) {
+        //   state.contacts.item[updatedContactIndex] = action.payload
+        // }
+      })
+
       .addMatcher(
         isAnyOf(
           requestContacts.pending,
           addContacts.pending,
-          deleteContacts.pending
+          deleteContacts.pending,
+          updateContacts.pending
         ),
         state => {
           state.contacts.isLoading = true;
@@ -57,7 +82,8 @@ const contactsSlice = createSlice({
         isAnyOf(
           requestContacts.rejected,
           addContacts.rejected,
-          deleteContacts.rejected
+          deleteContacts.rejected,
+          updateContacts.rejected
         ),
         (state, action) => {
           state.contacts.isLoading = false;
@@ -67,4 +93,4 @@ const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
-export const { filterContact } = contactsSlice.actions;
+export const { filterContact, setEditingContactId } = contactsSlice.actions;
