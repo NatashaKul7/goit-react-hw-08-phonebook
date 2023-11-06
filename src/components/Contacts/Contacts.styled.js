@@ -10,7 +10,7 @@ export const ContactsBox = styled.ul`
   li {
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: space-between;
   }
   button {
     margin-left: auto;
@@ -28,6 +28,39 @@ export const ContactsBox = styled.ul`
       rgba(0, 0, 0, 0.19) 0px 10px 20px;
   }
   .contactName {
+    margin-right: 8px;
+  }
+
+  .contacts-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+`;
+
+export const StyledEditForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  input {
+    padding: 4px 8px;
+    border-radius: 20px;
+    outline-color: #0000ff;
+  }
+
+  p {
+    margin: 0;
+    margin-bottom: 8px;
+  }
+
+  .editName {
+    margin-right: 8px;
+  }
+  .editNumber {
+    margin-right: 4px;
+  }
+  .save-button {
     margin-right: 8px;
   }
 `;

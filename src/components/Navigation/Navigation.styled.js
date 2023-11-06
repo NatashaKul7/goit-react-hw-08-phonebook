@@ -9,7 +9,6 @@ export const StyledHeader = styled.header`
   padding: 0px 8px;
   margin-bottom: 14px;
 
-  /* font-size: 20px; */
   background-color: rgba(255, 255, 255, 0.7);
 `;
 

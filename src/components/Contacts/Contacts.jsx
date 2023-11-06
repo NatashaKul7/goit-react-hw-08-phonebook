@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { ContactsBox } from './Contacts.styled';
+import { ContactsBox, StyledEditForm } from './Contacts.styled';
 import { deleteContacts, updateContacts } from 'redux/contacts/operations';
 import { setEditingContactId } from 'redux/contacts/contactsSlice';
 
@@ -36,32 +36,40 @@ export const Contacts = ({ contacts }) => {
         return (
           <li key={id}>
             {editingContactId === id && (
-              <form onSubmit={handleSubmit}>
+              <StyledEditForm onSubmit={handleSubmit} className="edit-form">
                 <label>
-                  <span>Name</span>
+                  <p className="editName">Name</p>
                   <input type="text" defaultValue={name} name="name" />
                 </label>
                 <label>
-                  <span>Phone</span>
+                  <p className="editNumber">Phone</p>
                   <input type="number" defaultValue={number} name="number" />
                 </label>
-                <button type="submit">Save contact</button>
-                <button
-                  type="button"
-                  onClick={() => dispatch(setEditingContactId(null))}
-                >
-                  &times;
-                </button>
-              </form>
+                <div>
+                  <button type="submit" className="save-button">
+                    Save contact
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => dispatch(setEditingContactId(null))}
+                  >
+                    &times;
+                  </button>
+                </div>
+              </StyledEditForm>
             )}
-            <span className="contactName">{name}:</span>
-            <span>{number}</span>
-            <button type="button" onClick={() => handleEdit(id)}>
-              Edit
-            </button>
-            <button type="button" onClick={() => handleDelete(id)}>
-              Delete
-            </button>
+            <div>
+              <span className="contactName">{name}:</span>
+              <span>{number}</span>
+            </div>
+            <div className="contacts-buttons">
+              <button type="button" onClick={() => handleEdit(id)}>
+                Edit
+              </button>
+              <button type="button" onClick={() => handleDelete(id)}>
+                Delete
+              </button>
+            </div>
           </li>
         );
       })}

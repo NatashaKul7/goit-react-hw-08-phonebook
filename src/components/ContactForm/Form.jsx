@@ -34,7 +34,7 @@ export function Form() {
         <input
           type="text"
           name="name"
-          placeholder="Gomez Simpson"
+          placeholder="Gomer Simpson"
           pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
